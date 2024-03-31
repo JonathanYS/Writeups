@@ -4,7 +4,7 @@ Let's start with the examination.
 
 ## Examination
 After reading a bit of the code we can detect a Format String vulnerability.
-The interesting function in this program is <span style="color: lime;"><b>buy_stonks</b></span>.
+The interesting function in this program is $\textcolor{blue}{\text{buy\\_stonks}}$.
 
 
 
@@ -71,7 +71,7 @@ Now, the output still looks not so familiar to the human eye. This is because of
 1. The addresses of this binary are stored in little-endian (and we know that this is a 32-bit binary, by the length of the addresses).
 2. We are leaking a lot of addresses from the stack. Lots of them don't have any connection to ascii values.
 
-We will need to identify the exact values of the flag. We can do that by looking at the ascii table and determine what is the value of the letter 'o', which is the start of the little-endian flag that we are looking for. The ascii value is <span style="color: lime;"><b>6f</b></span>. We can confidently delete all the values up until this value. Little-endian means that the addresses are reversed. Every 4 bytes. "pico" is the first 4 bytes of our flag and that is why the letter "o" will be the first letter of it in little-endian.
+We will need to identify the exact values of the flag. We can do that by looking at the ascii table and determine what is the value of the letter 'o', which is the start of the little-endian flag that we are looking for. The ascii value is $\textcolor{blue}{\text{6f}}$. We can confidently delete all the values up until this value. Little-endian means that the addresses are reversed. Every 4 bytes. "pico" is the first 4 bytes of our flag and that is why the letter "o" will be the first letter of it in little-endian.
 After we do this, we can copy the entire flag up until the character "}", and place it in a python program inside a variable. The following python code will help us in reversing the entire flag to be in big-endian and thus be readable for us:
 
 ```python
@@ -90,7 +90,7 @@ if __name__ == '__main__':
     print(new_message)
 ```
 
-After this function, we may take the output and delete all the <span style="color: lime;"><b>�</b></span> characters.
+After this function, we may take the output and delete all the $\textcolor{blue}{\text{�}}$ characters.
 The more elegant and maybe better way to do this operation would be to use RegEx.
 
 **We have the flag!**
